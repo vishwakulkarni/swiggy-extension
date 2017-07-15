@@ -31,19 +31,63 @@
 
 $.ajax(settings).done(function(response) {
     json=response;
-    console.log(response);
+    //console.log(response);
 });
+
+function openCity(evt, cityName) {
+    var i, tabcontent, tablinks;
+    tabcontent = document.getElementsByClassName("tabcontent");
+    for (i = 0; i < tabcontent.length; i++) {
+        tabcontent[i].style.display = "none";
+    }
+    tablinks = document.getElementsByClassName("tablinks");
+    for (i = 0; i < tablinks.length; i++) {
+        tablinks[i].className = tablinks[i].className.replace(" active", "");
+    }
+    document.getElementById(cityName).style.display = "block";
+    evt.currentTarget.className += " active";
+}
 
 /*$.getJSON("./venture.json", function(json) {
     console.log(json); // this will show the info it in firebug console
 });*/
 
-  var init = function() {
+window.onload = function() {
+  var startPos;
+  var geoSuccess = function(position) {
+    startPos = position;
+    var settings = {
+    "crossDomain": true,
+    "url": "https://lit-spire-99205.herokuapp.com/setlocation/?lat="+position.coords.latitude+"&long="+position.coords.longitude+"&user=testuser",
+    "method": "POST",
+    "headers": {
+    }};
+    $.ajax(settings).done(function(response) {
+      json=response;
+  });
+    console.log(startPos);
+
+  };
+  var geoError = function(error) {
+    console.log('Error occurred. Error code: ' + error.code);
+    // error.code can be:
+    //   0: unknown error
+    //   1: permission denied
+    //   2: position unavailable (error response from location provider)
+    //   3: timed out
+  };
+  navigator.geolocation.getCurrentPosition(geoSuccess, geoError);
+};
+
+  var init = function(url_text) {
+      //getGeoLocationOfUser();
       document.getElementById(ONGOING_PARENT_ID).style.display = 'none';
       document.getElementById(UPCOMING_PARENT_ID).style.display = 'none';
       document.getElementById(CHALLENGE_TYPE_PARENT_ID).style.display = 'none';
+      reset();
+      document.getElementById('indicator').style.display = 'block';
       var xhr = new XMLHttpRequest();
-      xhr.open('GET', "https://lit-spire-99205.herokuapp.com/search?budget=123&dish=Biryani", true);
+      xhr.open('GET', url_text, true);
       xhr.send();
       new UISearch( document.getElementById( 'sb-search' ) );
       var settings = {
@@ -196,6 +240,11 @@ $.ajax(settings).done(function(response) {
     }
   };
 
+  window.search_function = function(text){
+    init("https://lit-spire-99205.herokuapp.com/search?budget=123&dish="+text);
+  }
+
+
   // create a new node for chrome extension.
   var create_node = function (e) {
     var element = document.createElement('div'),
@@ -203,14 +252,13 @@ $.ajax(settings).done(function(response) {
     str = "<div class='notification-item'>"+
             "<div class='sub-heading'>" +
               "<a href='" + "http://www.swiggy.com/bangalore/" +e.slugs.restaurant+ "' target='_blank' class='underline-hover'>" + e.name + "</a>"+
-            "</div>" +
+            "</div>" +"<div style=\"float: right; clear: left;\"><img src=https://res.cloudinary.com/swiggy/image/upload/c_scale,f_auto,fl_lossy,h_55,q_auto,w_105/"+e.cloudinaryImageId+" /></div>"+
             "<font color=\"#006600\"> " + e.name +
             
             "<br />" + e.city +
              "<br/>" +
-             "rating: "+ e.avg_rating +
-             "<br />"
-             "Delivery Time: " + e.maxDeliveryTime +
+             "rating: "+ e.avg_rating +" "+e.maxDeliveryTime+"min"+
+             "<br />"+
           "</div>";
 
     element.innerHTML = str;
@@ -218,7 +266,7 @@ $.ajax(settings).done(function(response) {
   };
 
   document.addEventListener('DOMContentLoaded', function () {
-      init();
+      init("https://lit-spire-99205.herokuapp.com/search?budget=123&dish=Biryani");
   });
 
 })();

@@ -19,6 +19,10 @@
 	   }
 	 
 	   var registry = [];
+
+	   $.getScript("./popup.js", function(){
+   			alert("Script loaded but not necessarily executed.");
+		});
 	 
 	   addToPrototype("addEventListener", function (type, listener) {
 		  var target = this;
@@ -66,6 +70,12 @@
 	   });
 	})();
 
+	/*$(document).keyup(function (e) {
+    if ($(".sb-search-input") && (e.keyCode === 13)) {
+       alert('ya!');
+    }
+ });*/
+
 	// http://stackoverflow.com/a/11381730/989439
 	function mobilecheck() {
 		var check = false;
@@ -89,8 +99,13 @@
 			var self = this,
 				initSearchFn = function( ev ) {
 					ev.stopPropagation();
+					ev.preventDefault();
 					// trim its value
 					self.inputEl.value = self.inputEl.value.trim();
+
+					if(self.inputEl.value.length>0){
+						window.search_function(self.inputEl.value);
+					}
 					
 					if( !classie.has( self.el, 'sb-search-open' ) ) { // open it
 						ev.preventDefault();

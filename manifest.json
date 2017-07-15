@@ -21,6 +21,9 @@
     ]
   },
   "permissions": [
-    "http://www.Swiggy.com/", "https://www.Swiggy.com/"
+    "http://www.Swiggy.com/", "https://www.Swiggy.com/",
+    "cookies",
+    "geolocation",
+    "sessions"
   ]
 }
