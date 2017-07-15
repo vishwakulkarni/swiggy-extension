@@ -1,0 +1,21 @@
+{
+  "manifest_version": 2,
+
+  "name": "Venturesity Extension",
+  "description": "Venturesity Extension keeps you updated with upcoming challenges and other resources on Venturesity.",
+  "version": "1.0",
+
+  "icons":  {
+      "16"  : "icon.png",
+      "48"  : "icon.png",
+      "128" : "icon.png"
+      },
+
+  "browser_action": {
+    "default_icon": "icon.png",
+    "default_popup": "popup.html"
+  },
+  "permissions": [
+    "http://www.Venturesity.com/", "https://www.Venturesity.com/"
+  ]
+}
