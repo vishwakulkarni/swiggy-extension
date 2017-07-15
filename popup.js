@@ -1,7 +1,7 @@
 (function () {
 
   // define constants here
-  var DATA_URL= 'https://api.myjson.com/bins/2tigz';
+  var DATA_URL= 'https://api.myjson.com/bins/119onn';
   var ONGOING= 'ONGOING';
   var UPCOMING= 'UPCOMING';
   var ONGOING_PARENT_ID= 'ongoing-top-parent';
@@ -19,34 +19,48 @@
     }
   }
 
-  var json;
+    var json ;
 
   var settings = {
     "crossDomain": true,
-    "url": "http://api.venturesity.com/events",
+    "url": "https://lit-spire-99205.herokuapp.com/search?budget=123&dish=Biryani",
     "method": "GET",
     "headers": {
-        "content-type": "application/json",
-        "auth-token": "8b07812d1f937a1604426347d6481bb5"
     }
 }
 
 $.ajax(settings).done(function(response) {
-    json=response.data;
-    //console.log(response.data);
+    json=response;
+    console.log(response);
 });
+
+/*$.getJSON("./venture.json", function(json) {
+    console.log(json); // this will show the info it in firebug console
+});*/
 
   var init = function() {
       document.getElementById(ONGOING_PARENT_ID).style.display = 'none';
       document.getElementById(UPCOMING_PARENT_ID).style.display = 'none';
       document.getElementById(CHALLENGE_TYPE_PARENT_ID).style.display = 'none';
       var xhr = new XMLHttpRequest();
-      xhr.open('GET', DATA_URL, true);
+      xhr.open('GET', "https://lit-spire-99205.herokuapp.com/search?budget=123&dish=Biryani", true);
       xhr.send();
-
+      new UISearch( document.getElementById( 'sb-search' ) );
+      var settings = {
+    "crossDomain": true,
+    "url": "https://lit-spire-99205.herokuapp.com/search?budget=123&dish=Biryani",
+    "method": "GET",
+    "headers": {
+    }};
+    $.ajax(settings).done(function(response) {
+    json=response;
+    //alert( "success" );
+    //console.log(response);
+});
+   
       xhr.onreadystatechange = function () {
           var json_response = JSON.parse(xhr.responseText);
-          //var json = json_response.data;
+          var json = json_response.data;
           document.getElementById('indicator').style.display = 'none';
           reset();
           populateDiv(ONGOING_ID, ONGOING, json);
@@ -128,14 +142,24 @@ $.ajax(settings).done(function(response) {
     }
   };
 
+  var getCorrectRestaurentArray = function(json){
+    for(var i=0;i<4;i++){
+      if(json.restaurants[i].title.length>0 && json.restaurants[i].restaurants.length>0)
+    {
+      return json.restaurants[i];
+    }
+    }
+  }
 
 
   var populateDiv = function(div_id, challenge_status, json, requiredChallengeType) {
-    for(i = 0, len = json.length; i < len; i++) {
-      e = json[i];
-
+     json_sorted = getCorrectRestaurentArray(json).restaurants.sort(function (a,b){
+      return parseFloat(b.avg_rating) - parseFloat(a.avg_rating);
+    });
+    for(i = 0, len = json_sorted.length; i < len; i++) {
+      e = json_sorted[i];
       if (requiredChallengeType === 'All' || typeof requiredChallengeType === 'undefined') {
-        if( e.status == challenge_status || e.type=='online' || e.type == 'offline' ) { 
+        if( e.id >0) { 
           document.getElementById(div_id).appendChild(create_node(e));
         }
       } else {
@@ -178,16 +202,15 @@ $.ajax(settings).done(function(response) {
     // to be modified
     str = "<div class='notification-item'>"+
             "<div class='sub-heading'>" +
-              "<a href='" + "http://www.venturesity.com/challenge/" + "' target='_blank' class='underline-hover'>" + e.title + "</a>"+
+              "<a href='" + "http://www.swiggy.com/bangalore/" +e.slugs.restaurant+ "' target='_blank' class='underline-hover'>" + e.name + "</a>"+
             "</div>" +
-            "Challenge Type: " + e.type +
+            "<font color=\"#006600\"> " + e.name +
             
-            "<br />" +
-             "Date: " + e.date +
+            "<br />" + e.city +
              "<br/>" +
-             "Venue: "+ e.venue +
+             "rating: "+ e.avg_rating +
              "<br />"
-             "Time: " + e.time +
+             "Delivery Time: " + e.maxDeliveryTime +
           "</div>";
 
     element.innerHTML = str;

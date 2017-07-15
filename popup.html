@@ -1,18 +1,35 @@
 <html>
   <head>
     <center>
-    <title>Venturesity Extension</title>
-	<img src="v-logo.png"  height="128" width="300">
+    <title>Swiggy Extension</title>
+	<img src="swiggy.png"  height="128" width="350">
     </center>
     <link rel="stylesheet" href="base.css"/>
-    <script type="text/javascript" src="jquery-2.2.1.min.js"></script>
+    <script type="text/javascript" src="jquery-2.2.1.min.js" max-width:100%;
+max-height:100%; ></script>
+<link rel="shortcut icon" href="../favicon.ico"> 
+    <link rel="stylesheet" type="text/css" href="css/default.css" />
+    <link rel="stylesheet" type="text/css" href="css/component.css" />
+    <script src="js/modernizr.custom.js"></script>
+<div class="main clearfix">
+        <!-- Optional columns for small components -->
+        <div class="column">
+          <div id="sb-search" class="sb-search">
+            <form>
+              <input class="sb-search-input" placeholder="Enter your search term..." type="text" value="" name="search" id="search">
+              <input class="sb-search-submit" type="submit" value="">
+              <span class="sb-icon-search"></span>
+            </form>
+          </div>
+        </div>
+      </div>
   </head>
   <body bgcolor="#E6E6FA">
     <div id='data'>
 
       <div class='jewel-header'>
-      <a href="http://www.Venturesity.com" target="_blank"
-         style="text-decoration: none; font-size: 17px; text-transform: initial; color:#323754;">Venturesity Challenges</a>
+      <a href="http://www.Swiggy.com" target="_blank"
+         style="text-decoration: none; font-size: 17px; text-transform: initial; color:#323754;">Swiggy</a>
       </div>
 
       <div class='nice-select' style="padding-right:5px; height:22px;" id='challenge-type-parent'>
@@ -21,12 +38,12 @@
         </select>
       </div>
 
-      <div class="sub-heading less-margin bold" style="padding-left: 10px;" id='ongoing-top-parent'>Future Challenges</div>
+      <div class="sub-heading less-margin bold" style="padding-left: 10px;" id='ongoing-top-parent'>Food Delivery App</div>
       <div class='notifications'>
         <div id='ongoing'></div>
       </div>
 
-      <div class='sub-heading less-margin bold' style="padding-left: 10px;" id='upcoming-top-parent'>Upcoming Challenges</div>
+      <div class='sub-heading less-margin bold' style="padding-left: 10px;" id='upcoming-top-parent'>Swiggy Upcoming Restaurents</div>
       <div class='notifications'>
         <div id='upcoming'></div>
       </div>
@@ -40,8 +57,14 @@
 	</div>
 
     <script type="text/javascript" src="popup.js"></script>
+    <script src="js/classie.js"></script>
+    <script src="js/uisearch.js"></script>
+   <!-- <script>
+      new UISearch( document.getElementById( 'sb-search' ) );
+    </script>-->
+
     <div id='sub-heading'>
-    <p> Copyright © 2016 Venturesity.com All rights reserved | Developed by <a href="https://in.linkedin.com/in/vishwanath-kulkarni-656581a3" target='_blank' class='underline-hover'>vishwanath Kulkarni</a></P>
+    <p> Copyright © 2016 swiggy.com All rights reserved | Developed by <a href="https://in.linkedin.com/in/vishwanath-kulkarni-656581a3" target='_blank' class='underline-hover'>SIMPLEX</a></P>
     </div>
 
   </body>

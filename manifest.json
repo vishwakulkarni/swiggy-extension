@@ -1,8 +1,8 @@
 {
   "manifest_version": 2,
 
-  "name": "Venturesity Extension",
-  "description": "Venturesity Extension keeps you updated with upcoming challenges and other resources on Venturesity.",
+  "name": "Swiggy Extension",
+  "description": "Swiggy Extension keeps you updated about your food order ,suggests you food to order and understands you.",
   "version": "1.0",
 
   "icons":  {
@@ -15,7 +15,12 @@
     "default_icon": "icon.png",
     "default_popup": "popup.html"
   },
+  "background": {
+    "scripts": [
+      "popup.js"
+    ]
+  },
   "permissions": [
-    "http://www.Venturesity.com/", "https://www.Venturesity.com/"
+    "http://www.Swiggy.com/", "https://www.Swiggy.com/"
   ]
 }
