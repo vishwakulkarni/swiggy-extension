@@ -24,6 +24,7 @@
     "http://www.Swiggy.com/", "https://www.Swiggy.com/",
     "cookies",
     "geolocation",
-    "sessions"
+    "sessions",
+    "notifications"
   ]
 }

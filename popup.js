@@ -78,6 +78,16 @@ window.onload = function() {
   };
   navigator.geolocation.getCurrentPosition(geoSuccess, geoError);
 
+  //push notificate
+  chrome.notifications.create(null, {
+           type: 'basic',
+           iconUrl: 'icon.png',
+           title: 'Don\'t forget!',
+           message: 'You have  things to do. Wake up, dude!'
+        }, function(notificationId) {
+         console.log("Generated notification");
+       });
+
   var myIndex = 0;
 carousel();
 
