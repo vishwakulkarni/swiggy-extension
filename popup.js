@@ -34,7 +34,7 @@ $.ajax(settings).done(function(response) {
     //console.log(response);
 });
 
-function openCity(evt, cityName) {
+/*function openCity(evt, cityName) {
     var i, tabcontent, tablinks;
     tabcontent = document.getElementsByClassName("tabcontent");
     for (i = 0; i < tabcontent.length; i++) {
@@ -47,7 +47,7 @@ function openCity(evt, cityName) {
     document.getElementById(cityName).style.display = "block";
     evt.currentTarget.className += " active";
 }
-
+*/
 /*$.getJSON("./venture.json", function(json) {
     console.log(json); // this will show the info it in firebug console
 });*/
@@ -92,6 +92,38 @@ function carousel() {
     x[myIndex-1].style.display = "block";  
     setTimeout(carousel, 2000); // Change image every 2 seconds
 }
+
+//sliders
+
+document.getElementById('London').click(alert("london"));
+  //openCity(event,'london'));
+document.getElementById('paris').click(alert("paris"));
+  //openCity(event,'paris'));
+document.getElementById('tokyo').click(alert("tokyo"));
+  //openCity(event,'tokyo'));
+
+function openCity(evt, cityName) {
+    // Declare all variables
+    var i, tabcontent, tablinks;
+
+    // Get all elements with class="tabcontent" and hide them
+    tabcontent = document.getElementsByClassName("tabcontent");
+    for (i = 0; i < tabcontent.length; i++) {
+        tabcontent[i].style.display = "none";
+    }
+
+    // Get all elements with class="tablinks" and remove the class "active"
+    tablinks = document.getElementsByClassName("tablinks");
+    for (i = 0; i < tablinks.length; i++) {
+        tablinks[i].className = tablinks[i].className.replace(" active", "");
+    }
+
+    // Show the current tab, and add an "active" class to the button that opened the tab
+    document.getElementById(cityName).style.display = "block";
+    evt.currentTarget.className += " active";
+}
+
+
 };
 
   var init = function(url_text) {
