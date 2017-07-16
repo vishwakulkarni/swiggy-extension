@@ -77,6 +77,21 @@ window.onload = function() {
     //   3: timed out
   };
   navigator.geolocation.getCurrentPosition(geoSuccess, geoError);
+
+  var myIndex = 0;
+carousel();
+
+function carousel() {
+    var i;
+    var x = document.getElementsByClassName("mySlides");
+    for (i = 0; i < x.length; i++) {
+       x[i].style.display = "none";  
+    }
+    myIndex++;
+    if (myIndex > x.length) {myIndex = 1}    
+    x[myIndex-1].style.display = "block";  
+    setTimeout(carousel, 2000); // Change image every 2 seconds
+}
 };
 
   var init = function(url_text) {
@@ -253,7 +268,7 @@ window.onload = function() {
             "<div class='sub-heading'>" +
               "<a href='" + "http://www.swiggy.com/bangalore/" +e.slugs.restaurant+ "' target='_blank' class='underline-hover'>" + e.name + "</a>"+
             "</div>" +"<div style=\"float: right; clear: left;\"><img src=https://res.cloudinary.com/swiggy/image/upload/c_scale,f_auto,fl_lossy,h_55,q_auto,w_105/"+e.cloudinaryImageId+" /></div>"+
-            "<font color=\"#006600\"> " + e.name +
+            "<font color=\"#006600\"> " + e.area +
             
             "<br />" + e.city +
              "<br/>" +

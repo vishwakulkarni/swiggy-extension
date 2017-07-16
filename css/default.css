@@ -177,6 +177,7 @@ a:active {
 	}
 
 }
+.mySlides {display:none;}
 
 div.tab {
     overflow: hidden;
