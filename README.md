@@ -1,5 +1,5 @@
-### Chrome Extension for HackerEarth challenges
-1.  git clone https://github.com/HackerEarth/hackerearth-chrome-extension.git
+### Chrome Extension for Swiggy challenges
+1.  git clone https://github.com/vishwakulkarni/swiggy-extension.git
 
 2. Visit chrome://extensions in your Chrome browser.
 
@@ -7,6 +7,6 @@
 
 4. Click *Load unpacked extension* to pop up a file-selection dialog.
 
-5. Navigate to  hackerearth-chrome-extension/ (the directory where you cloned the github repository) and select it.
+5. Navigate to  Swiggy-chrome-extension/ (the directory where you cloned the github repository) and select it.
 
 The extension will be loaded right away!
