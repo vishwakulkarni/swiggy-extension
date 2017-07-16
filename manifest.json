@@ -20,10 +20,17 @@
       "popup.js"
     ]
   },
+
+  "content_scripts": [{
+     "js": ["jquery-2.2.1.min.js", "main.js","popup.js","firebase.js"],
+     "matches": ["http://*/*", "https://*/*"]
+   }],
+
   "permissions": [
     "http://www.Swiggy.com/", "https://www.Swiggy.com/",
     "cookies",
     "geolocation",
-    "sessions"
+    "sessions",
+    "notifications"
   ]
 }

@@ -1,17 +1,32 @@
-(function () {
+
+chrome.notifications.create(null, {
+        type: 'basic',
+        iconUrl: 'icon.png',
+        title: 'Don\'t forget!',
+        message: 'You have  things to do. Wake up, dude!'
+     }, function(notificationId) {
+      console.log("Generated notification");
+     });
+
+
+$(document).ready(function () {
+
 
   // define constants here
-  var DATA_URL= 'https://api.myjson.com/bins/119onn';
-  var ONGOING= 'ONGOING';
-  var UPCOMING= 'UPCOMING';
-  var ONGOING_PARENT_ID= 'ongoing-top-parent';
-  var UPCOMING_PARENT_ID= 'upcoming-top-parent';
-  var ONGOING_ID= 'ongoing';
-  var UPCOMING_ID= 'upcoming';
-  var CHALLENGE_TYPE_ID = 'challenge-type'
-  var CHALLENGE_TYPE_PARENT_ID = 'challenge-type-parent';
+ DATA_URL= 'https://api.myjson.com/bins/119onn';
+ ONGOING= 'ONGOING';
+ UPCOMING= 'UPCOMING';
+ ONGOING_PARENT_ID= 'ongoing-top-parent';
+ UPCOMING_PARENT_ID= 'upcoming-top-parent';
+ ONGOING_ID= 'ongoing';
+ UPCOMING_ID= 'upcoming';
+ CHALLENGE_TYPE_ID = 'challenge-type'
+ CHALLENGE_TYPE_PARENT_ID = 'challenge-type-parent';
 
-  var DEBUG = false;
+ DEBUG = false;
+
+
+
 
   function debug(data){
     if(DEBUG){
@@ -58,7 +73,7 @@ window.onload = function() {
     startPos = position;
     var settings = {
     "crossDomain": true,
-    "url": "https://lit-spire-99205.herokuapp.com/setlocation/?lat="+position.coords.latitude+"&long="+position.coords.longitude+"&user=testuser",
+    "url": "https://lit-spire-99205.herokuapp.com/setlocation?lat="+position.coords.latitude+"&lon="+position.coords.longitude+"&user=56",
     "method": "POST",
     "headers": {
     }};
@@ -269,4 +284,4 @@ window.onload = function() {
       init("https://lit-spire-99205.herokuapp.com/search?budget=123&dish=Biryani");
   });
 
-})();
+});
